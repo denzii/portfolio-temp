@@ -1,0 +1,151 @@
+@use "abstracts" as a;
+
+
+.header {
+	@include a.fixedHeaderRules();
+	@include a.centreSpacedFlexContainerRules(flex);
+	background-color: #F8F8F8;
+	width: 100%;
+  	padding-bottom: 15px;
+	  
+  	/*neumorphism effects*/
+  	border-radius: 0px 0px 13px 13px;
+  	background: linear-gradient(a.neumorphDegree(upper-left-lightsource), #ffffff, #e6e6e6);
+  	box-shadow:  8px 10px 16px #636363, 4px -2px 16px #666666;  
+
+	@include a.mobileMediaQuery {
+		//decrease neumorphism intensity
+		box-shadow:  8px 5px 9px #949494, 4px -2px 8px #8b8b8b;  
+	}
+
+	&__description {
+		&--hidden {
+			@include a.hiddenRules();
+		}
+	}
+
+	.nav-logo-text__anchor{
+		@include a.anchorNavigationRules(null, small-caps);
+		font-feature-settings: normal;
+	}
+
+  	&__desktop-nav {
+		@include a.mobileMediaQuery {
+			display: none;
+		}
+		
+    	// needed so the li elems will have space between them (this requires container to be bigger)
+    	width: 575px;
+    	height: inherit;
+		
+		.desktop-nav__menu {
+			// align the inner DOM element containing the list of navigation anchors
+			@include a.centreSpacedFlexContainerRules(flex);
+			
+			//for some reason nav menu was misaligned with the h3 on the left, quick and dirty hack
+			padding-top: 2.5px; 
+
+			.menu__element {
+				list-style-type: none;
+				.text__anchor {
+					@include a.anchorNavigationRules(uppercase);
+				}
+			}
+		}
+  	}
+
+	&__mobile-nav {
+		@include a.centreSpacedFlexContainerRules(none);
+		flex-wrap: nowrap;
+		flex-direction: row-reverse;
+		
+		@include a.mobileMediaQuery {
+			display: flex;
+		}
+
+		.mobile-nav__label{
+			@include a.hiddenRules();
+		}
+
+		.mobile-nav__button {
+			cursor: pointer;
+			font-size: 1.9em;
+			color: black;
+			padding-top: 10px;
+			border: none;
+			background-color: inherit;
+		} 
+
+		.mobile-nav__menu {
+			// for mobile viewports, push navbar elements from the center to the sides 
+ 			// && change width of mobile menu so it will be indented in
+ 			// is there a better way to achive it through flexbox without playing with width or media q? 
+			@include a.mobileMediaQuery {
+				width: 100%;
+				padding-bottom:5px;
+			}
+
+			// for low end viewports,
+ 			// change width of mobile menu so it will be displayed properly
+ 			// is there a better way to achive it through flexbox without playing with width or media q? 
+			@include a.lowEndMediaQuery {
+				padding-right: 2em;
+			}
+
+			@include a.centreSpacedFlexContainerRules(flex);
+			flex-direction: column;
+
+			width: 10em;
+			height: 100%;
+
+			position:relative;
+			padding-right: 8em;
+
+			.menu__element {
+				text-align: center;
+				height: 2.5em;
+				list-style-type: none;
+
+				.text__anchor{
+					@include a.anchorNavigationRules(uppercase);
+				}
+			}
+		}
+	}
+}
+
+
+
+// media queries before scss///////
+
+/* for tablet-ish viewports, push navbar elements from the center to the sides */
+// @media only screen and (max-width: 1280px){
+//   header {
+    // padding-left: 4vw;
+    // padding-right: 5vw;
+//   }
+// }
+
+/* for mobile viewports, push navbar elements from the center to the sides 
+ && change width of mobile menu so it will be indented in
+ is there a better way to achive it through flexbox without playing with width or media q? */
+//  @media only screen and (max-width: 800px) {
+//   header #desktop-nav {
+//     display: none;
+//   }
+//   header #mobile-nav {
+//     display: flex;
+//   }
+//   header #mobile-nav menu {
+//     width: 100%;
+//   }  
+// }
+
+/* for low end viewports,
+ change width of mobile menu so it will be displayed properly
+ is there a better way to achive it through flexbox without playing with width or media q? */
+//  @media only screen and (max-width: 485px) {
+//   header #mobile-nav menu {
+//     padding-right: 2em;
+//   }  
+// }

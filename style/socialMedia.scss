@@ -1,0 +1,39 @@
+@use "abstracts" as a;
+
+.social-media {
+    position: relative;
+    background-color: #2f2f2f;
+    height: 2em;
+    font-size: 2em;
+    background: linear-gradient(a.neumorphDegree(upper-left-lightsource), #2a2a2a, #323232);
+    box-shadow:  8px 3px 8px #272727;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+
+    // padding to push the flex container's elements in the middle while using space-around
+    padding-left: 25vw;
+    padding-right: 25vw;
+    min-width: 125px;
+
+    &__description{
+        &--hidden{
+            @include a.hiddenRules();
+        }
+    }
+
+    &__external-address {
+        font-size: 40px;
+        width: 40px;
+        text-decoration: none;
+        flex-wrap: wrap;
+
+        .anchor__icon {
+            &--white{
+                color: white;
+            }            
+        }   
+    }
+}

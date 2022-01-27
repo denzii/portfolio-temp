@@ -1,0 +1,44 @@
+@use "abstracts" as a;
+
+.hero {
+	@include a.heroSectionBackgroundImageRules();
+  	display: flex;
+
+	&__description{
+		&--hidden{
+			@include a.hiddenRules();
+		}
+	}
+	
+	&__background-picture{
+		// position: relative;
+		z-index: inherit;
+	}
+
+  	&__foreground-picture {
+    	border: 0.125em solid #fff;
+    	background: linear-gradient(a.neumorphDegree(upper-left-lightsource), #2a2a2a, #323232);
+    	box-shadow:  8px 20px 15px #242424, 4px -5px 10px #666666;
+		margin: auto;
+		border-radius: 100%;
+		max-width:27em;
+		min-width: 15em;
+		overflow: hidden;
+		display: flex;
+
+		@include a.mobileMediaQuery{
+			// decrease hero section image size
+			max-width: 23.5em;
+			//decrease neumorphism intensity 
+			box-shadow:  6px 10px 12px #474747, 2px 0px 4px #666666;
+		}
+
+		@include a.lowEndMediaQuery{
+			max-width: 19.5em;
+		}
+
+		.foreground-picture__image{
+			align-self: center;
+		}
+  	}
+}

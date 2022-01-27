@@ -1,0 +1,158 @@
+@use "abstracts" as a;
+
+.personal-background {
+    position: relative;
+    z-index: 0;
+
+    &__description{
+        &--hidden{
+            @include a.hiddenRules();
+        }
+    }
+    &__section {
+        position: relative;
+        padding: 25px;
+        scroll-margin-top: 4.75em;
+        min-height: 87.5vh; // reduced to 87.5 as a means of hacking, see the bottom of this file for details
+        position: relative;
+        box-shadow:  0px -2px 7px #2f2f2f, 0px 5px 7px #2f2f2f inset;
+
+        &--light-background{
+            @include a.lightBackgroundRules();
+        }
+
+        &--dark-background{
+            @include a.darkBackgroundRules();
+        }
+        
+        .data-tag__text{
+            letter-spacing: 0.05em;
+            margin-top: 70px;
+            margin-bottom: 60px;
+
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .section__data-group {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+    
+            padding-top: 3em;
+            padding-bottom: 3em;
+        
+             * {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .data-group__data-definition {
+                max-width: 420px;
+
+                .data-definition__fieldset {
+                    border: 0;
+                    padding-top: 10px;
+                    padding-bottom: 92.5px; // this is 92.5  as a means of hacking, see the bottom of this file for details
+                    text-align: center;
+                    max-width: 320px;
+
+                    .anchor__figure, .fieldset__figure {
+                        height: 200px;
+                        position: relative;                        
+                        z-index: 2;
+
+                        .figure__picture{
+                            & > span {
+                                // next/image is wrapping the image with spans and forcing overflow:hidden on the image
+                                // this is messing up the zoom and highlight animations implemented
+                                // sooooo here is an ugly workaround, special thx to nextjs
+                                overflow: unset !important;
+                            }
+                            position: relative;
+                            .picture__image {
+                                border-radius: 42.5%;
+                                background-color: white;
+                                max-width: 200px;
+                                box-shadow:  0px 1px 6px #2f2f2f, 0px 2px 16px #2f2f2f;
+    
+                                &:hover {
+                                    box-shadow:  0px 1px 25px #C3AF8F, 0px 2px 25px #544739;
+                                }
+    
+                                &--zoom {
+                                    @include a.zoomEffectRules();
+                                }
+                                
+                                @include a.mobileMediaQuery{
+                                    max-width: 175px;
+                                    box-shadow:  0px 1px 6px #8a8989, 0px 2px 14px #6d6d6d;
+                                    
+                                    &:hover {
+                                        box-shadow:  0px 1px 15px #C3AF8F, 0px 2px 20px #544739;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .figure__caption {
+                        padding: 5px;
+                        max-width: 250px;
+                        border-radius: 10%;
+                        margin: auto;
+                        top: -35.5px;
+                        position: relative;
+
+                        &--light-text{
+                            @include a.lightTextRules();
+                        }
+
+                        &--light-overlay{
+                            @include a.lightOverlayRules();
+                        }
+
+                        &--dark-text{
+                            @include a.darkTextRules();
+                        }
+
+                        &--dark-overlay{
+                            @include a.darkOverlayRules();
+                        }
+                    }
+                        
+                    .details__summary{
+                        font-size: 1.20em;
+                        font-weight: 600;
+
+                        // remove margin between chronology and data tag heading ONLY
+                        & + p {
+                            margin-top: 0;
+                        }
+                    }
+
+                    .details__description, .details__chronology {
+                        padding-top: 5px;
+                        font-weight: 600;
+                    }
+                    
+                    .description__text{
+                        &--no-style{
+                            @include a.noStyleRules();
+                        }
+                    }
+                }
+            }
+        }
+    } 
+}
+
+
+            
+            //hack to make the above and below empty spaces around the image even in size because I couldn't sort out something better as quickly as I wanted
+            // Wrote a todo comment in app.ts
+            // a) Flex Basis: a value of 100% on the h3 (.data-tag__text) to take it out of the flex-flow so it could have a fixed position in the container also the image
+            //    could be centred as if the heading is not in the flex container
+            // b) Overlayed Divs: the div containing the image should go over the h3 (section__data-group) and be given a z-index, it also should inherit the height of the parent & have its contents 
+            //    centred more easily.
