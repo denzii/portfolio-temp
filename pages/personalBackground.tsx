@@ -25,10 +25,8 @@ const PersonalBackground: (props: PersonalBackgroundProps) => JSX.Element  = (pr
                     <dd className="data-group__data-definition" role="definition">
                         <HTMLTag as={getDetailTag(sectionName)} role="listitem">
                             <fieldset className="data-definition__fieldset">
-                                { detail && <>
-                                    <FieldsetFigure {...{ detail, sectionIndex, sectionName}}/>
-                                </>}
-                                { detail && detail.title && <>
+                                <FieldsetFigure {...{ detail, sectionIndex, sectionName}}/>
+                                {detail.title && <>
                                     <details open={true}>
                                         <summary className='details__summary' tabIndex={0}>
                                             <dfn title={String(detail.title.definition)}>{detail.title.text}</dfn> 
