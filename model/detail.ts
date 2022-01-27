@@ -35,5 +35,5 @@ export default class Detail implements IPlainOldObject {
         this.image = image;
     }
 
-    ToString = () => `Experience at ${this.title} during ${this.dateRange}. Did ${this.description}. To learn more, visit: ${this.url}`;
+    ToString = () => `Experience at ${this.title?.text} during ${this.dateRange}.`;
 }

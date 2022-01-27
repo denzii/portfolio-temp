@@ -5,7 +5,11 @@ type FieldsetFigureProps = { detail: Detail, sectionName: string, sectionIndex:n
 type PictureProps = { detail: Detail, sectionName: string, sectionIndex:number, className:string };
 
 const FieldsetFigure: (props: FieldsetFigureProps) => JSX.Element  = (props) => {
-    const Figure: (props: PictureProps) => JSX.Element = (props) => <>
+    const Figure: (props: PictureProps) => JSX.Element = (props) =>{
+        console.log(props.sectionName);
+        console.log(props.detail);
+        console.log(props.detail.url);
+        return  <>
         <figure className={props.className}>
             <picture className="figure__picture">
                 <Image className={`picture__image ${props.detail.url ? "picture__image--zoom" : ""}`} width={200} height={200} objectFit="contain" src={JSON.parse(String(props.detail.image.src))} alt={props.detail.image.alt} title={props.detail.title?.definition ?? props.detail.image.title}/>
@@ -17,6 +21,7 @@ const FieldsetFigure: (props: FieldsetFigureProps) => JSX.Element  = (props) => 
             }
         </figure>
     </> 
+    }
 
     return props.detail.url 
         ?  <address tabIndex={0}  role="link">
