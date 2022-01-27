@@ -7,7 +7,7 @@ import { connect, ComponentConstructor }  from '../model/view/context';
 import _ from '../model/view/keyableFragment';
 import Text from '../model/view/text';
 import Util from '../util';
-import FieldsetFigure from './fieldsetFigure';
+import FieldsetFigure from '../model/view/fieldsetFigure';
 
 type PersonalBackgroundProps =  { background: Background };
 
