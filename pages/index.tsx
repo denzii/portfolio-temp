@@ -44,7 +44,7 @@ const Home: NextPage<HomeProps> = (props) => <>
 	</React.StrictMode>
 </>
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	return {
 		props: Data.PersonalBrand()
 	} 
