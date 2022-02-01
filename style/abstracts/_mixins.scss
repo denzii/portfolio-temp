@@ -56,8 +56,6 @@
 @mixin anchorNavigationRules($textTransform:initial, $fontVariant:initial) {
 	/* important, but not emphasized enough to be bold, so explicitly set to "kind of bold" but not really */
 	font-weight:500;
-	/* undo the default anchor styling which the browsers may apply */
-	text-decoration: none;
 	/* never break any text from the middle*/
 	white-space: nowrap;
 	/* scroll to the anchor but 100px above it, needed as the fixed position navbar covers the beginning of the sections once scrolled to */

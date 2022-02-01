@@ -25,6 +25,8 @@
 	}
 
 	.header__anchor{
+		text-decoration: none;
+
 		h3, h4{
 			@include a.anchorNavigationRules(null, small-caps);
 			font-feature-settings: normal;
@@ -50,6 +52,7 @@
 			.menu__element {
 				list-style-type: none;
 				.element__anchor {
+					text-decoration: none;
 					h3, h4{
 						@include a.anchorNavigationRules(uppercase);
 					}
@@ -111,6 +114,7 @@
 				list-style-type: none;
 
 				.element__anchor{
+					text-decoration: none;
 					h3, h4{
 						@include a.anchorNavigationRules(uppercase);
 					}
