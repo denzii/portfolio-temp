@@ -9,10 +9,15 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang='en'>
-          	<title>Deniz Arca</title>
+          	<title>Deniz Arca&apos;s Web Presence</title>
         	<Head>
 				<meta charSet="utf-8" />
-    			<meta name="description" content="Personal portfolio"/>   
+				<link rel="shortcut icon" href="/public/favicon.ico" />
+				<link rel="shortcut icon" type="image/png" href="public/images/favicon.png"/>
+				<link rel="shortcut icon" sizes="192x192" href="public/images/favicon.ico"/>
+				<link rel="apple-touch-icon" href="/public/images/favicon.ico"/>
+
+    			<meta name="description" content="Personal portfolio site with an edge on reuse, targetting individuals who are in need of web presence. SEO Ready, Accessible & Extensible, based in React!"/>   
 			</Head>
         	<body>
           		<Main />
