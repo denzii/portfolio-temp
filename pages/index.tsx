@@ -8,11 +8,9 @@ import dynamic from 'next/dynamic';
 type HomeProps =  { headshot: ImageProps; background: ImageProps; };
 
 const Home: NextPage<HomeProps> = (props) => {
-	const suspense: {} = { loading: () => <div>... Loading</div> };
-
-	const Nav = dynamic(() => import("./nav"), suspense);
-	const SocialMedia = dynamic(() => import("./socialMedia"), suspense);
-	const PersonalBackground = dynamic(() => import("./personalBackground"), suspense);
+	const Nav = dynamic(() => import("./nav"), { loading: () => <div>... Loading</div> });
+	const SocialMedia = dynamic(() => import("./socialMedia"), { loading: () => <div>... Loading</div> });
+	const PersonalBackground = dynamic(() => import("./personalBackground"), { loading: () => <div>... Loading</div> });
 
 	return <>
 		<React.StrictMode>
