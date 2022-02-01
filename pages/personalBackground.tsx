@@ -18,17 +18,17 @@ const Data: ContextReducer = (context: AppContext) => ({
 
 const PersonalBackground: (props: PersonalBackgroundProps) => JSX.Element  = (props) => <>
     {Object.entries(props.background).map(([sectionName, sectionDetails]: [string, Detail[]], sectionIndex) => <_ key={sectionName}>
-        <dl className={`personal-background__section ${getSectionCssModifier(sectionIndex)}`} id={sectionName}>
+        <dl role="article" className={`personal-background__section ${getSectionCssModifier(sectionIndex)}`} tabIndex={0}  aria-busy="false" id={sectionName}>
             <dt><h3 className="data-tag__text">{sectionName.toUpperCase()}</h3></dt>
-            <section className='section__data-group'>
-                {sectionDetails.map((detail: Detail) => <_ key={`${sectionName}${detail.title?.text ?? ""}`}>
+            <div role="presentation" className='section__data-group'>
+                {sectionDetails.map((detail: Detail, articleIndex: number) => <_ key={`${sectionName}${detail.title?.text ?? ""}`}>
                     <dd className="data-group__data-definition" role="definition">
-                        <HTMLTag as={getDetailTag(sectionName)} role="listitem">
+                        <HTMLTag as={getDetailTag(sectionName)}>
                             <fieldset className="data-definition__fieldset">
                                 <FieldsetFigure {...{ detail, sectionIndex, sectionName}}/>
                                 {detail.title && <>
                                     <details open={true}>
-                                        <summary className='details__summary' tabIndex={0}>
+                                        <summary className='details__summary' id={`details__summary${sectionIndex}${articleIndex}`} tabIndex={0}>
                                             <dfn title={String(detail.title.definition)}>{detail.title.text}</dfn> 
                                         </summary>
                                         <p className='details__chronology'>
@@ -46,7 +46,7 @@ const PersonalBackground: (props: PersonalBackgroundProps) => JSX.Element  = (pr
                         </HTMLTag>
                     </dd>
                 </_>)}
-            </section>
+            </div>
         </dl>
     </_>)}
 </>

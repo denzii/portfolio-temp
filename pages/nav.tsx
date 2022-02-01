@@ -33,7 +33,7 @@ const Nav: (props: HeaderNavProps) => JSX.Element = (props) => {
         </Link>
 
         <nav className="header__desktop-nav">
-            <menu className="desktop-nav__menu">
+            <ul className="desktop-nav__menu">
                 {props.navigationLinks.map(sectionKey => <_ key={`menu__element-${sectionKey}`}>
                     <li className="menu__element">
                         <a className="element__anchor" title={`Scroll to ${sectionKey} section`} href={ `/#${sectionKey}`}> 
@@ -41,7 +41,7 @@ const Nav: (props: HeaderNavProps) => JSX.Element = (props) => {
                         </a>
                     </li>
                 </_>)}
-            </menu>
+            </ul>
         </nav>
         <nav className="header__mobile-nav" aria-labelledby="header__mobile-nav__label">
             <label className="mobile-nav__label" htmlFor="mobile-nav__button" id="mobile-nav__label" aria-label="Mobile Navigation Menu Toggle" >
@@ -50,7 +50,7 @@ const Nav: (props: HeaderNavProps) => JSX.Element = (props) => {
             <button className="mobile-nav__button" id="mobile-nav__button" autoFocus onClick={() => setMobileMenuState(!isMobileMenuOpen)} onKeyPress={onEnterKey} aria-expanded={isMobileMenuOpen}>
                 <MobileMenuIcon/>
             </button>
-            <menu className='mobile-nav__menu'>
+            <ul className='mobile-nav__menu'>
                 {isMobileMenuOpen && props.navigationLinks.map(sectionKey => <_ key={`mobile-${sectionKey}`}>
                     <motion.li className="menu__element" onClick={onAnchorNavigation} initial={{ opacity: 0, y: -40 }} animate={{ opacity: 1, y: 0 }} transition={{delay: 0.04}}>
                         <a className="element__anchor" title={`Scroll to ${sectionKey} section`} href={ `/#${sectionKey}`}>
@@ -58,7 +58,7 @@ const Nav: (props: HeaderNavProps) => JSX.Element = (props) => {
                         </a>
                     </motion.li>
                 </_>)}
-            </menu>
+            </ul>
         </nav>
     </>
 }
