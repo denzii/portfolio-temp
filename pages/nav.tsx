@@ -47,7 +47,7 @@ const Nav: (props: HeaderNavProps) => JSX.Element = (props) => {
             <label className="mobile-nav__label" htmlFor="mobile-nav__button" id="mobile-nav__label" aria-label="Mobile Navigation Menu Toggle" >
                 Navigation Menu toggle used for mobile size screen resolutions
             </label>
-            <button className="mobile-nav__button" id="mobile-nav__button" autoFocus onClick={() => setMobileMenuState(!isMobileMenuOpen)} onKeyPress={onEnterKey} aria-expanded={isMobileMenuOpen}>
+            <button className="mobile-nav__button" id="mobile-nav__button" aria-labelledby='mobile-nav__label' autoFocus onClick={() => setMobileMenuState(!isMobileMenuOpen)} onKeyPress={onEnterKey} aria-expanded={isMobileMenuOpen}>
                 <MobileMenuIcon/>
             </button>
             <ul className='mobile-nav__menu'>
