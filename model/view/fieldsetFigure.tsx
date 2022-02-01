@@ -6,11 +6,10 @@ type PictureProps = { detail: Detail, sectionName: string, sectionIndex:number, 
 
 const FieldsetFigure: (props: FieldsetFigureProps) => JSX.Element  = (props) => {
 
-    const Figure: (props: PictureProps) => JSX.Element = (props) =>{
-
+    const Figure: (props: PictureProps) => JSX.Element = (props) => {
         return  <>
         <figure className={props.className}>
-            <picture className="figure__picture">
+            <picture className="figure__picture" >
                 <Image className={`picture__image ${props.detail?.url ? "picture__image--zoom" : ""}`} width={200} height={200} objectFit="contain" src={JSON.parse(String(props.detail.image.src))} alt={props.detail.image.alt} title={props.detail.title?.definition ?? props.detail.image.title}/>
             </picture> 
             {props.detail.image.caption && 

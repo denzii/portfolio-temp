@@ -7,7 +7,9 @@ import '../style/socialMedia.scss';
 import '../style/personalBackground.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
+
   return <Component {...pageProps} />
 }
 
 export default MyApp
+

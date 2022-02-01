@@ -24,9 +24,11 @@
 		}
 	}
 
-	.nav-logo-text__anchor{
-		@include a.anchorNavigationRules(null, small-caps);
-		font-feature-settings: normal;
+	.header__anchor{
+		h3, h4{
+			@include a.anchorNavigationRules(null, small-caps);
+			font-feature-settings: normal;
+		}
 	}
 
   	&__desktop-nav {
@@ -47,8 +49,10 @@
 
 			.menu__element {
 				list-style-type: none;
-				.text__anchor {
-					@include a.anchorNavigationRules(uppercase);
+				.element__anchor {
+					h3, h4{
+						@include a.anchorNavigationRules(uppercase);
+					}
 				}
 			}
 		}
@@ -106,8 +110,10 @@
 				height: 2.5em;
 				list-style-type: none;
 
-				.text__anchor{
-					@include a.anchorNavigationRules(uppercase);
+				.element__anchor{
+					h3, h4{
+						@include a.anchorNavigationRules(uppercase);
+					}
 				}
 			}
 		}

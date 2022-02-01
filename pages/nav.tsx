@@ -23,32 +23,22 @@ const Nav: (props: HeaderNavProps) => JSX.Element = (props) => {
     const onEnterKey: EnterKeyEvent = (e: React.KeyboardEvent) => e.key === "Enter" ? setMobileMenuState(!isMobileMenuOpen) : () => {};
     const onAnchorNavigation: () => void = () => setMobileMenuState(false);
     
-    const MobileMenuButton: () => JSX.Element = isMobileMenuOpen ? () => <>
-            <button className="mobile-nav__button" id="mobile-nav__button" autoFocus onClick={() => setMobileMenuState(!isMobileMenuOpen)} onKeyPress={onEnterKey} aria-expanded={isMobileMenuOpen}>
-                <MobileMenuClosedIcon/>
-            </button>
-        </> : () => <>
-            <button className="mobile-nav__button" id="mobile-nav__button" autoFocus onClick={() => setMobileMenuState(!isMobileMenuOpen)} onKeyPress={onEnterKey} aria-expanded={isMobileMenuOpen}>
-                <MobileMenuOpenedIcon/>
-            </button>
-        </>;
-    
+    const MobileMenuIcon:() => JSX.Element = isMobileMenuOpen ? () => <MobileMenuClosedIcon/> : () => <MobileMenuOpenedIcon/>;
+
     return <>
         <Link href="/" passHref>
-            <h3 >
-                <a className="nav-logo-text__anchor" title='Scroll to Top' onClick={onAnchorNavigation}>{props.logoText}</a>
-            </h3>
+            <a className="header__anchor" title='Scroll to Top' onClick={onAnchorNavigation}>
+                <h3>{props.logoText}</h3>
+            </a>
         </Link>
 
         <nav className="header__desktop-nav">
             <menu className="desktop-nav__menu">
                 {props.navigationLinks.map(sectionKey => <_ key={`menu__element-${sectionKey}`}>
                     <li className="menu__element">
-                        <Link href={ `/#${sectionKey}`} passHref>
-                            <h4> 
-                                <a className="text__anchor" title={`Scroll to ${sectionKey} section`}>{sectionKey}</a>
-                            </h4>
-                        </Link>
+                        <a className="element__anchor" title={`Scroll to ${sectionKey} section`} href={ `/#${sectionKey}`}> 
+                            <h4>{sectionKey}</h4>
+                        </a>
                     </li>
                 </_>)}
             </menu>
@@ -57,15 +47,15 @@ const Nav: (props: HeaderNavProps) => JSX.Element = (props) => {
             <label className="mobile-nav__label" htmlFor="mobile-nav__button" id="mobile-nav__label" aria-label="Mobile Navigation Menu Toggle" >
                 Navigation Menu toggle used for mobile size screen resolutions
             </label>
-            <MobileMenuButton />
+            <button className="mobile-nav__button" id="mobile-nav__button" autoFocus onClick={() => setMobileMenuState(!isMobileMenuOpen)} onKeyPress={onEnterKey} aria-expanded={isMobileMenuOpen}>
+                <MobileMenuIcon/>
+            </button>
             <menu className='mobile-nav__menu'>
                 {isMobileMenuOpen && props.navigationLinks.map(sectionKey => <_ key={`mobile-${sectionKey}`}>
                     <motion.li className="menu__element" onClick={onAnchorNavigation} initial={{ opacity: 0, y: -40 }} animate={{ opacity: 1, y: 0 }} transition={{delay: 0.04}}>
-                       <Link href={ `/#${sectionKey}`} passHref>
-                            <h4>
-                                <a className="text__anchor" title={`Scroll to ${sectionKey} section`}> {sectionKey}</a>
-                            </h4>
-                        </Link>
+                        <a className="element__anchor" title={`Scroll to ${sectionKey} section`} href={ `/#${sectionKey}`}>
+                            <h4> {sectionKey}</h4>
+                        </a>
                     </motion.li>
                 </_>)}
             </menu>
